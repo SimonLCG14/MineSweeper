@@ -3,7 +3,7 @@ package at.matulin.model;
 import java.util.Random;
 
 public class Board {
-    private final int SIZE = 16;
+    private final int SIZE = Constants.SIZE;
 
     private Cell[][] board;
 
