@@ -1,4 +1,4 @@
-package at.matulin;
+package at.matulin.view;
 
 import javax.swing.*;
 
