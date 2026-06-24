@@ -154,7 +154,7 @@ public class BoardPanel extends JPanel {
             java.net.URL imgURL = getClass().getResource("/" + filename);
 
             if (imgURL == null) {
-                System.err.println("Konnte Bild nicht finden: " + filename);
+                System.err.println("Could not load image: " + filename);
                 return new ImageIcon();
             }
 
@@ -165,7 +165,7 @@ public class BoardPanel extends JPanel {
             return new ImageIcon(scaledImage);
 
         } catch (Exception e) {
-            System.err.println("Fehler beim Laden von " + filename);
+            System.err.println("Error loading image " + filename);
             return new ImageIcon();
         }
     }
