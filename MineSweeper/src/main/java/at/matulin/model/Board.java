@@ -133,28 +133,28 @@ public class Board {
     public void uncoverCell(int x, int y) {
         boolean isOutOfBounds = x >= SIZE || x < 0 || y >= SIZE || y < 0;
 
-        if(isOutOfBounds){
+        if (isOutOfBounds) {
             return;
         }
 
-        boolean isBomb = this.board[x][y].isBomb();
-        boolean hasNearByBombs = this.board[x][y].getBombsNearby() > 0;
-        boolean isAlreadyUncovered = this.board[x][y].isUncovered();
+        Cell currentCell = this.board[x][y];
 
-        if(isBomb || hasNearByBombs || isAlreadyUncovered){
+        if (currentCell.isBomb() || currentCell.isUncovered()) {
             return;
         }
 
-        this.board[x][y].setUncovered(true);
+        currentCell.setUncovered(true);
 
-        this.uncoverCell(x + 1, y + 1);
-        this.uncoverCell(x + 1, y - 1);
-        this.uncoverCell(x - 1, y + 1);
-        this.uncoverCell(x - 1, y - 1);
-        this.uncoverCell(x, y + 1);
-        this.uncoverCell(x, y - 1);
-        this.uncoverCell(x + 1, y);
-        this.uncoverCell(x - 1, y);
+        if (currentCell.getBombsNearby() == 0) {
+            this.uncoverCell(x + 1, y + 1);
+            this.uncoverCell(x + 1, y - 1);
+            this.uncoverCell(x - 1, y + 1);
+            this.uncoverCell(x - 1, y - 1);
+            this.uncoverCell(x, y + 1);
+            this.uncoverCell(x, y - 1);
+            this.uncoverCell(x + 1, y);
+            this.uncoverCell(x - 1, y);
+        }
     }
 
     public void printBoard(){
@@ -175,7 +175,7 @@ public class Board {
     public boolean isGameFinished(){
         for (Cell[] cells : this.board) {
             for (Cell cell : cells) {
-                if(cell.isBomb() && !cell.isFlagged()){
+                if (!cell.isBomb() && !cell.isUncovered()) {
                     return false;
                 }
             }

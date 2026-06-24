@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     static void main() {
-        Board board = new Board(30);
+        Board board = new Board(20);
+
         new MineSweeperFrame(board);
     }
 }

@@ -1,5 +1,6 @@
 package at.matulin.view;
 
+import at.matulin.controller.GameController;
 import at.matulin.model.Board;
 import at.matulin.model.Constants;
 
@@ -20,15 +21,20 @@ public class MineSweeperFrame extends JFrame {
 
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BorderLayout());
-        titlePanel.setBackground(new Color(255, 0, 0));
+        titlePanel.setBackground(new Color(157, 155, 155));
         titlePanel.setBounds(0, 0, WIDTH, 100);
 
         JLabel titleLabel = new JLabel("Minesweeper");
         titleLabel.setVerticalAlignment(JLabel.CENTER);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         BoardPanel boardPanel = new BoardPanel(board);
         boardPanel.setBounds(0, 100, WIDTH, Constants.WINDOW_HEIGHT - 100);
+
+        GameController controller = new GameController(board, boardPanel);
+        boardPanel.setController(controller);
+
 
         titlePanel.add(titleLabel);
         this.setVisible(true);
